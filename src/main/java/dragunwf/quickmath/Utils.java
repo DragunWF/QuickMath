@@ -6,12 +6,10 @@ public class Utils {
     public static String formatNumber(Integer number) {
         char[] numCharArr = number.toString().toCharArray();
         numCharArr = reverseCharArray(numCharArr);
-
-        String strNum = String.valueOf(numCharArr);
         ArrayList<String> output = new ArrayList<>();
 
-        for (int i = 0, n = strNum.length(); i < n; i++) {
-            output.add(Character.toString(strNum.charAt(i)));
+        for (int i = 0; i < numCharArr.length; i++) {
+            output.add(Character.toString(numCharArr[i]));
             if ((i + 1) % 3 == 0) {
                 output.add(",");
             }
