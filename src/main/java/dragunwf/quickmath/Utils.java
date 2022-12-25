@@ -1,6 +1,6 @@
 package dragunwf.quickmath;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Utils {
     public static String formatNumber(Integer number) {
@@ -14,7 +14,7 @@ public class Utils {
                 output.add(",");
             }
         }
-        
+
         char[] resultCharArray = String.join("", output).toCharArray();
         resultCharArray = reverseCharArray(resultCharArray);
 
