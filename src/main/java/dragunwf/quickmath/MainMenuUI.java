@@ -2,11 +2,14 @@ package dragunwf.quickmath;
 
 public class MainMenuUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainMenuUI
-     */
     public MainMenuUI() {
         initComponents();
+        HighScoreLabel.setText(
+           String.format("High Score: %s", Data.getHighScore())
+        );
+        GamesPlayedLabel.setText(
+           String.format("Games played in this session: %s", Data.getGamesPlayed())
+        );
     }
 
     @SuppressWarnings("unchecked")
@@ -18,6 +21,8 @@ public class MainMenuUI extends javax.swing.JFrame {
         PlayButton = new javax.swing.JButton();
         TitleLabel = new javax.swing.JLabel();
         ExitButton = new javax.swing.JButton();
+        GamesPlayedLabel = new javax.swing.JLabel();
+        HighScoreLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -25,6 +30,11 @@ public class MainMenuUI extends javax.swing.JFrame {
 
         PlayButton.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         PlayButton.setText("Play");
+        PlayButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PlayButtonMouseClicked(evt);
+            }
+        });
 
         TitleLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 48)); // NOI18N
         TitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -39,6 +49,10 @@ public class MainMenuUI extends javax.swing.JFrame {
             }
         });
 
+        GamesPlayedLabel.setText("Games played in this session: 0");
+
+        HighScoreLabel.setText("High Score: 0");
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
@@ -50,6 +64,15 @@ public class MainMenuUI extends javax.swing.JFrame {
                     .addComponent(PlayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(GamesPlayedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(HighScoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,7 +83,11 @@ public class MainMenuUI extends javax.swing.JFrame {
                 .addComponent(PlayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(HighScoreLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GamesPlayedLabel)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,7 +101,7 @@ public class MainMenuUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -84,6 +111,10 @@ public class MainMenuUI extends javax.swing.JFrame {
         System.out.println("Exiting application");
         System.exit(0);
     }//GEN-LAST:event_ExitButtonMouseClicked
+
+    private void PlayButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlayButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlayButtonMouseClicked
 
     public void start() {
         try {
@@ -118,6 +149,8 @@ public class MainMenuUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExitButton;
+    private javax.swing.JLabel GamesPlayedLabel;
+    private javax.swing.JLabel HighScoreLabel;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton PlayButton;
     private javax.swing.JLabel TitleLabel;
