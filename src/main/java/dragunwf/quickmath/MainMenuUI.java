@@ -113,7 +113,8 @@ public class MainMenuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitButtonMouseClicked
 
     private void PlayButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlayButtonMouseClicked
-        // TODO add your handling code here:
+        WindowManager.openGameUI();
+        super.dispose();
     }//GEN-LAST:event_PlayButtonMouseClicked
 
     public void start() {
