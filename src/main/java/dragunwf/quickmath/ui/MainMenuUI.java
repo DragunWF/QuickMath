@@ -2,16 +2,17 @@ package dragunwf.quickmath.ui;
 
 import dragunwf.quickmath.scripts.Data;
 import dragunwf.quickmath.scripts.WindowManager;
+import dragunwf.quickmath.scripts.Utils;
 
 public class MainMenuUI extends javax.swing.JFrame {
 
     public MainMenuUI() {
         initComponents();
         HighScoreLabel.setText(
-           String.format("High Score: %s", Data.getHighScore())
+           String.format("High Score: %s", Utils.formatNumber(Data.getHighScore()))
         );
         GamesPlayedLabel.setText(
-           String.format("Games played in this session: %s", Data.getGamesPlayed())
+           String.format("Games played in this session: %s", Utils.formatNumber(Data.getGamesPlayed()))
         );
     }
 
