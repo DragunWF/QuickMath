@@ -20,6 +20,17 @@ public class Utils {
 
         return String.valueOf(resultCharArray);
     }
+    
+    public static void setTimeout(Runnable runnable, int delay) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            } catch (Exception error) {
+                System.err.println(error);
+            }
+        }).start();
+    }
 
     private static char[] reverseCharArray(char[] arr) {
         char[] output = new char[arr.length];
