@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dragunwf.quickmath;
 
-/**
- *
- * @author dragunwf
- */
 public class WindowManager {
+    private static MainMenuUI mainMenuUI;
+    private static GameUI gameUI;
     
+    public static void initializeTabs() {
+        mainMenuUI = new MainMenuUI();
+        mainMenuUI.start();
+    }
+    
+    public static void openGameUI() {
+        gameUI = new GameUI();
+        gameUI.start();
+    }
 }
