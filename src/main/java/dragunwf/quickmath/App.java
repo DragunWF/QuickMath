@@ -2,7 +2,7 @@ package dragunwf.quickmath;
 
 import dragunwf.quickmath.scripts.WindowManager;
 
-public class QuickMath {
+public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Starting application...");
         initializeApp();
