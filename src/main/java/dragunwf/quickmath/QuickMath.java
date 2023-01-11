@@ -3,13 +3,14 @@ package dragunwf.quickmath;
 import dragunwf.quickmath.scripts.WindowManager;
 
 public class QuickMath {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Starting application...");
         initializeApp();
         System.out.println("Initialized App!");
     }
     
-    private static void initializeApp() {
-        WindowManager.initializeTabs();
+    private static void initializeApp() throws Exception {
+        // App starts with the main menu
+        WindowManager.openMainMenu();
     }
 }
