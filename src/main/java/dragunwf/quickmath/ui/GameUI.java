@@ -1,4 +1,4 @@
-package dragunwf.quickmath;
+package dragunwf.quickmath.ui;
 
 public class GameUI extends javax.swing.JFrame {
     public GameUI() {

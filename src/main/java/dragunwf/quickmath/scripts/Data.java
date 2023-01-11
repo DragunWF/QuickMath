@@ -1,4 +1,4 @@
-package dragunwf.quickmath;
+package dragunwf.quickmath.scripts;
 
 public class Data {
     private static int gamesPlayedInSession = 0;

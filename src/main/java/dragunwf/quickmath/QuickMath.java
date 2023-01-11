@@ -1,5 +1,7 @@
 package dragunwf.quickmath;
 
+import dragunwf.quickmath.scripts.WindowManager;
+
 public class QuickMath {
     public static void main(String[] args) {
         System.out.println("Starting application...");

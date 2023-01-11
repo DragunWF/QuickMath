@@ -1,4 +1,4 @@
-package dragunwf.quickmath;
+package dragunwf.quickmath.scripts;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class Utils {
             try {
                 Thread.sleep(delay);
                 runnable.run();
-            } catch (Exception error) {
+            } catch (InterruptedException error) {
                 System.err.println(error);
             }
         }).start();

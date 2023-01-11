@@ -1,4 +1,4 @@
-package dragunwf.quickmath;
+package dragunwf.quickmath.scripts;
 
 import java.util.ArrayList;
 
