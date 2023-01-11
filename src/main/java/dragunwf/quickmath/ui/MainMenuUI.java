@@ -3,6 +3,8 @@ package dragunwf.quickmath.ui;
 import dragunwf.quickmath.scripts.Data;
 import dragunwf.quickmath.scripts.WindowManager;
 import dragunwf.quickmath.scripts.Utils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainMenuUI extends javax.swing.JFrame {
 
@@ -114,8 +116,12 @@ public class MainMenuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitButtonMouseClicked
 
     private void PlayButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlayButtonMouseClicked
-        WindowManager.openGameUI();
-        super.dispose();
+        try {
+            WindowManager.openGame();
+            super.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(MainMenuUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_PlayButtonMouseClicked
 
     public void start() {
