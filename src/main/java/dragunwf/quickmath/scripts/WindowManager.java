@@ -3,29 +3,40 @@ package dragunwf.quickmath.scripts;
 import dragunwf.quickmath.ui.GameUI;
 import dragunwf.quickmath.ui.MainMenuUI;
 import dragunwf.quickmath.ui.RetryMenuUI;
-import java.util.HashMap;
 
 public class WindowManager {
-    private static HashMap<String, javax.swing.JFrame> windows;
- 
-    public static void initializeTabs() {
-        windows.put("mainMenu", null);
-        windows.put("game", null);
-        windows.put("retryMenu", null);
-    }
+    private static MainMenuUI mainMenuUI;
+    private static GameUI gameUI;
+    private static RetryMenuUI retryMenuUI;
     
-    public static void openMainMenu() {
+    public static void openMainMenu() throws Exception {
         WindowManager.openWindow("mainMenu");
     }
     
-    private static void openWindow(String name) {
-        javax.swing.JFrame tab = null;
+    public static void openGame() throws Exception {
+        WindowManager.openWindow("game");
+    }
+    
+    public static void openRetryMenu() throws Exception {
+        WindowManager.openWindow("retryMenu");
+    }
+    
+    private static void openWindow(String name) throws Exception {
         switch (name) {
-            case "mainMenu" -> tab = new MainMenuUI();
-            case "game" -> tab = new GameUI();
-            case "retryMenu" -> tab = new RetryMenuUI();
+            case "mainMenu":
+                mainMenuUI = new MainMenuUI();
+                mainMenuUI.start();
+                break;
+            case "game":
+                gameUI = new GameUI();
+                gameUI.start();
+                break;
+            case "retryMenu":
+                retryMenuUI = new RetryMenuUI();
+                retryMenuUI.start();
+                break;
+            default:
+                throw new Exception("Window name passed is not recognized!");
         }
-        windows.put(name, tab);
-        windows.get(name).start();
     }
 }
