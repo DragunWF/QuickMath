@@ -2,10 +2,9 @@ package dragunwf.quickmath.scripts;
 
 public class Data {
     private static int gamesPlayedInSession = 0;
-    private static int score = 0;
     private static int highScore = 0;
     
-    public static void saveScore() {
+    public static void saveScore(int score) {
         gamesPlayedInSession++;
         if (score > highScore) {
             highScore = score;
@@ -14,10 +13,6 @@ public class Data {
     
     public static int getGamesPlayed() {
         return gamesPlayedInSession;
-    }
-    
-    public static int getScore() { 
-        return score;
     }
     
     public static int getHighScore() {
