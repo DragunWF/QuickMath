@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 public class GameUI extends javax.swing.JFrame {
     private final ActionListener gameEndListener = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ae) {
             try {
                 WindowManager.openRetryMenu();
@@ -24,6 +25,7 @@ public class GameUI extends javax.swing.JFrame {
         }
     };
     private final ActionListener nextQuestionListener = new ActionListener() {
+        @Override
         public void actionPerformed(ActionEvent ae) {
             createQuestion();
             nextQuestionTimer.stop();
@@ -32,10 +34,13 @@ public class GameUI extends javax.swing.JFrame {
     private final ActionListener timeListener = new ActionListener() {
         int secondsLeft = Game.getBaseTime();
 
+        @Override
         public void actionPerformed(ActionEvent ae) {
             secondsLeft--;
             updateTimeLabel(secondsLeft);
             if (secondsLeft <= 0) {
+                submissionEnabled = false;
+                MathLabel.setText("Time's up!");
                 gameEndTimer.start();
                 timer.stop();
             }
@@ -45,9 +50,11 @@ public class GameUI extends javax.swing.JFrame {
     private Timer gameEndTimer = new Timer(3000, gameEndListener);
     private Timer timer = new Timer(1000, timeListener);
     private int score = 0;
+    private boolean submissionEnabled = true;
 
     public GameUI() {
         initComponents();
+        updateTimeLabel(Game.getBaseTime());
         createQuestion();
     }
 
@@ -71,7 +78,6 @@ public class GameUI extends javax.swing.JFrame {
         ScoreLabel.setText(
                 String.format("Score: %s", score));
         MathLabel.setText("Correct!");
-        nextQuestionTimer.start();
     }
 
     private void onWrongAnswer() {
@@ -82,7 +88,6 @@ public class GameUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        nextQuestionTimer.start();
     }
     
     private void endGame() {
@@ -201,17 +206,20 @@ public class GameUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_SubmitButtonMouseClicked
-        int answer = Integer.parseInt(AnswerTextField.getText());
-        try {
-            if (answer == Game.getCorrectAnswer()) {
-                onCorrectAnswer();
-            } else {
-                onWrongAnswer();
+        if (submissionEnabled) {
+            int answer = Integer.parseInt(AnswerTextField.getText());
+            try {
+                if (answer == Game.getCorrectAnswer()) {
+                    onCorrectAnswer();
+                } else {
+                    onWrongAnswer();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
+            nextQuestionTimer.start();
+            AnswerTextField.setText("");
         }
-        AnswerTextField.setText("");
     }// GEN-LAST:event_SubmitButtonMouseClicked
 
     public void start() {
