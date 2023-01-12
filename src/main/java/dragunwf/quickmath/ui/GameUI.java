@@ -1,10 +1,28 @@
 package dragunwf.quickmath.ui;
 
 import dragunwf.quickmath.scripts.Game;
+import dragunwf.quickmath.scripts.Utils;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 
 public class GameUI extends javax.swing.JFrame {
+    private ActionListener timeListener = new ActionListener() {
+        int secondsLeft = Game.getBaseTime();
+        public void actionPerformed(ActionEvent ae) {
+            if (Game.getBaseTime() <= 0) {
+                timer.stop();
+            }
+            secondsLeft--;
+            updateTimeLabel(secondsLeft);
+        };
+    };
+    private Timer timer = new Timer(1000, timeListener);
+    
     public GameUI() {
         initComponents();
         
@@ -15,6 +33,14 @@ public class GameUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        timer.start();
+    }
+    
+    public void updateTimeLabel(int seconds) {
+        TimeLabel.setText(
+           String.format("Time Left: %s", seconds)
+        );
     }
 
     @SuppressWarnings("unchecked")
@@ -54,7 +80,7 @@ public class GameUI extends javax.swing.JFrame {
 
         TimeLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         TimeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TimeLabel.setText("Time left: 10");
+        TimeLabel.setText("Time Left: 30");
         TimeLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
