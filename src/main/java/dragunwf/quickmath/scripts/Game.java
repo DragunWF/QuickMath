@@ -4,10 +4,11 @@ public class Game {
     private static String equationText = null;
     private static int correctAnswer;
     private static final int BASE_TIME = 60; // in seconds
+    private static final int[] numRange = { 5, 150 };
     
     public static void randomizeEquation() {
-        int a = getRandomNum(5, 150); 
-        int b = getRandomNum(5, 150);
+        int a = getRandomNum(numRange[0], numRange[1]); 
+        int b = getRandomNum(numRange[0], numRange[1]);
         equationText = String.format("%s + %s", a, b);
         correctAnswer = a + b;
     }
