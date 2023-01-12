@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Utils {
     public static String formatNumber(Integer number) {
+        if (number < 1000) {
+            return number.toString();
+        }
+        
         char[] numCharArr = number.toString().toCharArray();
         numCharArr = reverseCharArray(numCharArr);
         ArrayList<String> output = new ArrayList<>();
