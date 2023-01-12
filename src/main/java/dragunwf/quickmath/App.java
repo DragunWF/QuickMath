@@ -11,6 +11,7 @@ public class App {
     
     private static void initializeApp() throws Exception {
         // App starts with the main menu
+        WindowManager.initialize();
         WindowManager.openMainMenu();
     }
 }
