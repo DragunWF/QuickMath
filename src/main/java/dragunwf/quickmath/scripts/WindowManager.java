@@ -3,6 +3,7 @@ package dragunwf.quickmath.scripts;
 import dragunwf.quickmath.ui.GameUI;
 import dragunwf.quickmath.ui.MainMenuUI;
 import dragunwf.quickmath.ui.RetryMenuUI;
+
 import java.util.HashMap;
 
 public class WindowManager {
