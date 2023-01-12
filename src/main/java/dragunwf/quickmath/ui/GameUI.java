@@ -32,7 +32,7 @@ public class GameUI extends javax.swing.JFrame {
         }
     };
     private final ActionListener timeListener = new ActionListener() {
-        int secondsLeft = Game.getBaseTime();
+        int secondsLeft = Game.BASE_TIME;
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -54,7 +54,7 @@ public class GameUI extends javax.swing.JFrame {
 
     public GameUI() {
         initComponents();
-        updateTimeLabel(Game.getBaseTime());
+        updateTimeLabel(Game.BASE_TIME);
         createQuestion();
     }
 
@@ -89,7 +89,7 @@ public class GameUI extends javax.swing.JFrame {
             Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void endGame() {
         Data.saveScore(score);
         super.dispose();

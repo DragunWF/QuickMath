@@ -1,9 +1,9 @@
 package dragunwf.quickmath.scripts;
 
 public class Game {
+    public static final int BASE_TIME = 60; // in seconds
     private static String equationText = null;
     private static int correctAnswer;
-    private static final int BASE_TIME = 60; // in seconds
     private static final int[] numRange = { 5, 150 };
     
     public static void randomizeEquation() {
@@ -21,10 +21,6 @@ public class Game {
     public static int getCorrectAnswer() throws Exception {
         validateEquation();
         return correctAnswer;
-    }
-    
-    public static int getBaseTime() {
-        return BASE_TIME;
     }
     
     private static void validateEquation() throws Exception {
