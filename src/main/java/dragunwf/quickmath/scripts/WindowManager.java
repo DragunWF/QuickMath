@@ -38,5 +38,6 @@ public class WindowManager {
             default:
                 throw new Exception("Window name passed is not recognized!");
         }
+        System.out.printf("Opened %sUI\n", name);
     }
 }
