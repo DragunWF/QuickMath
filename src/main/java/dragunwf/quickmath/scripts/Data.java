@@ -13,6 +13,14 @@ public class Data {
         }
     }
     
+    public static void onNewGame() {
+        newHighScore = false;
+    }
+    
+    public static boolean isNewHighScore() { 
+        return newHighScore;
+    }
+    
     public static int getGamesPlayed() {
         return gamesPlayedInSession;
     }
