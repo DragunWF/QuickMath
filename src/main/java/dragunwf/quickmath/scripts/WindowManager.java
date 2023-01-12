@@ -23,20 +23,19 @@ public class WindowManager {
     
     private static void openWindow(String name) throws Exception {
         switch (name) {
-            case "mainMenu":
+            case "mainMenu" -> {
                 mainMenuUI = new MainMenuUI();
                 mainMenuUI.start();
-                break;
-            case "game":
+            }
+            case "game" -> {
                 gameUI = new GameUI();
                 gameUI.start();
-                break;
-            case "retryMenu":
+            }
+            case "retryMenu" -> {
                 retryMenuUI = new RetryMenuUI();
                 retryMenuUI.start();
-                break;
-            default:
-                throw new Exception("Window name passed is not recognized!");
+            }
+            default -> throw new Exception("Window name passed is not recognized!");
         }
         System.out.printf("Opened %sUI\n", name);
     }
