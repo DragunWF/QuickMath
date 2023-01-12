@@ -3,7 +3,7 @@ package dragunwf.quickmath.scripts;
 public class Game {
     private static String equationText = null;
     private static int correctAnswer;
-    private static final int baseTime = 60; // in seconds
+    private static final int BASE_TIME = 60; // in seconds
     
     public static void randomizeEquation() {
         int a = getRandomNum(5, 150); 
@@ -23,7 +23,7 @@ public class Game {
     }
     
     public static int getBaseTime() {
-        return baseTime;
+        return BASE_TIME;
     }
     
     private static void validateEquation() throws Exception {
