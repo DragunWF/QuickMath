@@ -24,6 +24,18 @@ public class Utils {
 
         return String.valueOf(resultCharArray);
     }
+    
+    public static boolean validateSubmission(String input) {
+        int[] digitRange = { 48, 57 };
+        for (char character : input.toCharArray()) {
+            int charDigit = (int) character;
+            if (charDigit >= digitRange[0] && charDigit <= digitRange[1]) {
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
 
     private static char[] reverseCharArray(char[] arr) {
         char[] output = new char[arr.length];
