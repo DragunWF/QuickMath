@@ -39,15 +39,15 @@ public class WindowManager {
         switch (name) {
             case "mainMenu" -> {
                 mainMenuUI = new MainMenuUI();
-                mainMenuUI.start();
+                mainMenuUI.setVisible(true);
             }
             case "game" -> {
                 gameUI = new GameUI();
-                gameUI.start();
+                gameUI.setVisible(true);
             }
             case "retryMenu" -> {
                 retryMenuUI = new RetryMenuUI();
-                retryMenuUI.start();
+                retryMenuUI.setVisible(true);
             }
             default -> throw new Exception("Window name passed is not recognized!");
         }
