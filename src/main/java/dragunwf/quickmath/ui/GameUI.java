@@ -3,6 +3,7 @@ package dragunwf.quickmath.ui;
 import dragunwf.quickmath.scripts.Game;
 import dragunwf.quickmath.scripts.WindowManager;
 import dragunwf.quickmath.scripts.Data;
+import dragunwf.quickmath.scripts.Utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +17,8 @@ public class GameUI extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
-                WindowManager.openRetryMenu();
                 endGame();
+                WindowManager.openRetryMenu();
                 gameEndTimer.stop();
             } catch (Exception ex) {
                 Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,9 +47,11 @@ public class GameUI extends javax.swing.JFrame {
             }
         };
     };
+
     private Timer nextQuestionTimer = new Timer(750, nextQuestionListener);
     private Timer gameEndTimer = new Timer(3000, gameEndListener);
     private Timer timer = new Timer(1000, timeListener);
+
     private int score = 0;
     private boolean submissionEnabled = true;
 
@@ -92,6 +95,7 @@ public class GameUI extends javax.swing.JFrame {
 
     private void endGame() {
         Data.saveScore(score);
+        System.out.printf("Saved Score: %s\n", Data.getSavedScore());
         super.dispose();
     }
 
@@ -206,8 +210,9 @@ public class GameUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_SubmitButtonMouseClicked
-        if (submissionEnabled) {
-            int answer = Integer.parseInt(AnswerTextField.getText());
+        String playerInput = AnswerTextField.getText();
+        if (submissionEnabled && Utils.validateSubmission(playerInput)) {
+            int answer = Integer.parseInt(playerInput);
             try {
                 if (answer == Game.getCorrectAnswer()) {
                     onCorrectAnswer();
