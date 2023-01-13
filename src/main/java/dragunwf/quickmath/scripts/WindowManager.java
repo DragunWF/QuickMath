@@ -40,14 +40,17 @@ public class WindowManager {
             case "mainMenu" -> {
                 mainMenuUI = new MainMenuUI();
                 mainMenuUI.setVisible(true);
+                mainMenuUI.setResizable(false);
             }
             case "game" -> {
                 gameUI = new GameUI();
                 gameUI.setVisible(true);
+                gameUI.setResizable(false);
             }
             case "retryMenu" -> {
                 retryMenuUI = new RetryMenuUI();
                 retryMenuUI.setVisible(true);
+                retryMenuUI.setResizable(false);
             }
             default -> throw new Exception("Window name passed is not recognized!");
         }
