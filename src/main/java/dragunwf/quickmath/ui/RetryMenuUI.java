@@ -2,6 +2,7 @@ package dragunwf.quickmath.ui;
 
 import dragunwf.quickmath.scripts.WindowManager;
 import dragunwf.quickmath.scripts.Data;
+import dragunwf.quickmath.scripts.Utils;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +14,8 @@ public class RetryMenuUI extends javax.swing.JFrame {
     }
 
     private void onReady() {
-        ScoreLabel.setText(String.format("Score: %s", Data.getSavedScore()));
-        HighScoreLabel.setText(String.format("High Score: %s", Data.getHighScore()));
+        ScoreLabel.setText(String.format("Score: %s", Utils.formatNumber(Data.getSavedScore())));
+        HighScoreLabel.setText(String.format("High Score: %s", Utils.formatNumber(Data.getHighScore())));
         PromptLabel.setText(
                 !Data.isNewHighScore() ? "Try again?" : "New high score! Try again?");
     }
