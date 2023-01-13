@@ -3,6 +3,7 @@ package dragunwf.quickmath.ui;
 import dragunwf.quickmath.scripts.Data;
 import dragunwf.quickmath.scripts.WindowManager;
 import dragunwf.quickmath.scripts.Utils;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
