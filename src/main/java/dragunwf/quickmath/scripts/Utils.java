@@ -26,7 +26,7 @@ public class Utils {
     }
     
     public static boolean validateSubmission(String input) {
-        int[] digitRange = { 48, 57 };
+        int[] digitRange = { 48, 57 }; // int to char ascii_representation
         for (char character : input.toCharArray()) {
             int charDigit = (int) character;
             if (charDigit >= digitRange[0] && charDigit <= digitRange[1]) {

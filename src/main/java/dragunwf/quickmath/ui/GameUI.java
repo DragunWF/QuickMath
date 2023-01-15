@@ -75,6 +75,28 @@ public class GameUI extends javax.swing.JFrame {
         TimeLabel.setText(
                 String.format("Time Left: %s", seconds));
     }
+    
+    private void submitAnswer() {
+        String playerInput = AnswerTextField.getText();
+        if (submissionEnabled && playerInput.length() > 0) {
+            if (Utils.validateSubmission(playerInput)) {
+                int answer = Integer.parseInt(playerInput);
+                try {
+                    if (answer == Game.getCorrectAnswer()) {
+                        onCorrectAnswer();
+                    } else {
+                        onWrongAnswer();
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                onWrongAnswer();
+            }
+            nextQuestionTimer.start();
+            AnswerTextField.setText("");
+        }
+    }
 
     private void onCorrectAnswer() {
         score += 10;
@@ -95,13 +117,12 @@ public class GameUI extends javax.swing.JFrame {
 
     private void endGame() {
         Data.saveScore(score);
-        System.out.printf("Saved Score: %s\n", Data.getSavedScore());
         super.dispose();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         GamePanel = new javax.swing.JPanel();
@@ -127,6 +148,11 @@ public class GameUI extends javax.swing.JFrame {
 
         AnswerTextField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         AnswerTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        AnswerTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnswerTextFieldActionPerformed(evt);
+            }
+        });
 
         SubmitButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         SubmitButton.setText("Submit");
@@ -148,83 +174,60 @@ public class GameUI extends javax.swing.JFrame {
         javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
         GamePanel.setLayout(GamePanelLayout);
         GamePanelLayout.setHorizontalGroup(
-                GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(TitleLabel, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-                        .addComponent(MathLabel, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE)
-                        .addGroup(GamePanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(ScoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(GamePanelLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(AnswerTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 175,
-                                                Short.MAX_VALUE)
-                                        .addComponent(SubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(TitleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(MathLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(GamePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ScoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AnswerTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(SubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         GamePanelLayout.setVerticalGroup(
-                GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(GamePanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(MathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(AnswerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(
-                                        GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(TimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 33,
-                                                        Short.MAX_VALUE)
-                                                .addComponent(ScoreLabel))
-                                .addContainerGap()));
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GamePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(AnswerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(ScoreLabel))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(GamePanel, javax.swing.GroupLayout.Alignment.TRAILING,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(GamePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(64, Short.MAX_VALUE)
-                                .addComponent(GamePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(80, 80, 80)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(GamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AnswerTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnswerTextFieldActionPerformed
+        submitAnswer();
+    }//GEN-LAST:event_AnswerTextFieldActionPerformed
+
     private void SubmitButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_SubmitButtonMouseClicked
-        String playerInput = AnswerTextField.getText();
-        if (submissionEnabled && Utils.validateSubmission(playerInput)) {
-            int answer = Integer.parseInt(playerInput);
-            try {
-                if (answer == Game.getCorrectAnswer()) {
-                    onCorrectAnswer();
-                } else {
-                    onWrongAnswer();
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            nextQuestionTimer.start();
-            AnswerTextField.setText("");
-        }
+        submitAnswer();
     }// GEN-LAST:event_SubmitButtonMouseClicked
 
     public void start() {

@@ -112,6 +112,9 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnswerTextFieldActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="SubmitButton">
           <Properties>
