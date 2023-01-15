@@ -4,7 +4,7 @@ public class Game {
     public static final int BASE_TIME = 60; // in seconds
     private static String equationText = null;
     private static int correctAnswer;
-    private static final int[] numRange = { 5, 150 };
+    private static final int[] numRange = { 2, 25 };
     
     public static void randomizeEquation() {
         int a = getRandomNum(numRange[0], numRange[1]); 
