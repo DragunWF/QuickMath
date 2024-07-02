@@ -100,12 +100,13 @@ public class GameUI extends javax.swing.JFrame {
 
     private void onCorrectAnswer() {
         score += 10;
-        ScoreLabel.setText(
-                String.format("Score: %s", score));
+        updateScoreText();
         MathLabel.setText("Correct!");
     }
 
     private void onWrongAnswer() {
+        score -= 10;
+        updateScoreText();
         try {
             MathLabel.setText(
                     String.format(
@@ -113,6 +114,11 @@ public class GameUI extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(GameUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void updateScoreText() {
+        ScoreLabel.setText(
+                String.format("Score: %s", score));
     }
 
     private void endGame() {

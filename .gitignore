@@ -7,3 +7,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+.DS_Store
